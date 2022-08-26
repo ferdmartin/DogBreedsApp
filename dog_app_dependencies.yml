@@ -1,5 +1,6 @@
 name: dog_app_dependencies
 dependencies:
-    - os
-    - numpy
-    - tensorflow-base
+	- os
+	- numpy
+	- tensorflow-base
+	- matplotlib
