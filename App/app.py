@@ -24,17 +24,13 @@ def load_classes():
         class_names = json.load(classes)
     return class_names
 
-def load_and_prep_image(filename, img_shape=224, scale=True):
+def load_and_prep_image(filename, img_shape=224):
   #img = tf.io.read_file(filename)
   img = np.array(filename)#tf.io.decode_image(filename, channels=3)
   # Resize our image
   img = tf.image.resize(img, [img_shape,img_shape])
   # Scale
-  if scale:
-    # Rescale the image (get all values between 0 and 1)
-    return img/225.
-  else:
-    return img # don't need to resclae images for EfficientNet models in Tensorflow
+  return img # don't need to resclae images for EfficientNet models in Tensorflow
 
 if __name__ == '__main__':
 
@@ -48,7 +44,7 @@ if __name__ == '__main__':
     
   if uploaded_image:
     uploaded_image = Image.open(uploaded_image)
-    image_for_the_model = load_and_prep_image(uploaded_image, scale=False)
+    image_for_the_model = load_and_prep_image(uploaded_image)
     prediction = saved_model.predict(tf.expand_dims(image_for_the_model, axis=0), verbose=0)
     print(tf.argmax(prediction, axis=1).numpy())
     predicted_breed = class_names[str(tf.argmax(prediction, axis=1).numpy()[0])]
