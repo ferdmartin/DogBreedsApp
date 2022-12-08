@@ -50,5 +50,5 @@ if __name__ == '__main__':
     predicted_breed = class_names[str(tf.argmax(prediction, axis=1).numpy()[0])]
     predicted_breed = ' '.join(predicted_breed.split('_'))
     predicted_breed = predicted_breed.title()
-    st.title(f'This dog is a {predicted_breed}')
+    st.title(f'This dog looks like a {predicted_breed}')
     st.image(uploaded_image)
