@@ -9,10 +9,10 @@ from GDownload import download_file_from_google_drive
 
 @st.cache(allow_output_mutation=True)
 def load_model():
-  model_location = '1BzExYisHjG2GIjF7gxs1c0E9rdisJt2T'
+  model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
   save_dest = Path('saved_model')
   save_dest.mkdir(exist_ok=True)
-  saved_model = Path("saved_model/saved_model.h5")
+  saved_model = Path("saved_model/FerNet_EfficientNet.h5")
   if not saved_model.exists():
       download_file_from_google_drive(model_location, saved_model)
   saved_model = tf.keras.models.load_model(saved_model)
@@ -24,7 +24,7 @@ def load_classes():
         class_names = json.load(classes)
     return class_names
 
-def load_and_prep_image(filename, img_shape=224):
+def load_and_prep_image(filename, img_shape=260):
   #img = tf.io.read_file(filename)
   img = np.array(filename)#tf.io.decode_image(filename, channels=3)
   # Resize our image
