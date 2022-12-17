@@ -1,3 +1,3 @@
 # DogBreedsApp
  
-Uses FerNet to predict **Dog Breeds**.
+App that uses FerNet to predict **Dog Breeds**.
