@@ -46,9 +46,16 @@ if __name__ == '__main__':
     uploaded_image = Image.open(uploaded_image)
     image_for_the_model = load_and_prep_image(uploaded_image)
     prediction = saved_model.predict(tf.expand_dims(image_for_the_model, axis=0), verbose=0)
+    
+    _, top_k_indices = tf.nn.top_k(prediction,k=5)
+    top_5_classes = {top_n+1:class_names[str(top_k)] for top_n, top_k in enumerate(list(tf.squeeze(top_k_indices).numpy()))}
+    top_5_classes = pd.DataFrame({"Top-k":top_5_classes.keys(), "Dog Breed": top_5_classes.values()})
+    top_5_classes.set_index("Top-k", inplace=True)
+    
     print(tf.argmax(prediction, axis=1).numpy())
     predicted_breed = class_names[str(tf.argmax(prediction, axis=1).numpy()[0])]
     predicted_breed = ' '.join(predicted_breed.split('_'))
     predicted_breed = predicted_breed.title()
     st.title(f'This dog looks like a {predicted_breed}')
     st.image(uploaded_image)
+    st.dataframe(top_5_classes)
