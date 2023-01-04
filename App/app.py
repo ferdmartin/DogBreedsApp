@@ -59,4 +59,4 @@ if __name__ == '__main__':
     predicted_breed = predicted_breed.title()
     st.title(f'This dog looks like a {predicted_breed}')
     st.image(uploaded_image)
-    st.dataframe(top_5_classes)
+    st.dataframe(top_5_classes, use_container_width=True)
