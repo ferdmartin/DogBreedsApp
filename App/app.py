@@ -52,7 +52,7 @@ if __name__ == '__main__':
     top_5_classes = {top_n+1:class_names[str(top_k)] for top_n, top_k in enumerate(list(tf.squeeze(top_k_indices).numpy()))}
     top_k_proba = tf.squeeze(top_k_proba).numpy()
     top_5_classes = pd.DataFrame({"Top-k":top_5_classes.keys(), "Dog Breed": top_5_classes.values(), "Probability": top_k_proba})
-    top_5_classes.set_index("Top-k", inplace=True)
+    #top_5_classes.set_index("Top-k", inplace=True)
     
     print(tf.argmax(prediction, axis=1).numpy())
     predicted_breed = class_names[str(tf.argmax(prediction, axis=1).numpy()[0])]
@@ -63,4 +63,4 @@ if __name__ == '__main__':
     col1, col2 = st.columns(2)
     
     col1.image(uploaded_image,use_column_width=True)
-    col2.bar_chart(top_5_classes, y="Dog Breed", x="Probability")
+    col2.bar_chart(top_5_classes, x="Dog Breed", y="Probability", use_column_width=True)
