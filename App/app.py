@@ -60,7 +60,7 @@ if __name__ == '__main__':
     predicted_breed = predicted_breed.title()
     st.header(f'This dog looks like a {predicted_breed}')
     
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([1,2])
     
     col1.image(uploaded_image,use_column_width=True)
     col2.bar_chart(top_5_classes, x="Dog Breed", y="Probability", use_container_width=True)
