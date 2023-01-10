@@ -63,4 +63,4 @@ if __name__ == '__main__':
     col1, col2 = st.columns([1,2])
     
     col1.image(uploaded_image,use_column_width=True)
-    col2.bar_chart(top_5_classes, x="Dog Breed", y="Probability", height=800)
+    col2.bar_chart(top_5_classes, x="Dog Breed", y="Probability")
