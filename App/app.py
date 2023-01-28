@@ -9,11 +9,17 @@ import json
 from GDownload import download_file_from_google_drive
 
 @st.cache(allow_output_mutation=True)
-def load_model():
-  model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
-  save_dest = Path('saved_model')
-  save_dest.mkdir(exist_ok=True)
-  saved_model = Path("saved_model/FerNet_EfficientNet.h5")
+def load_model(selected_model='PVAN-Stanford'):
+  if selected_model == 'PVAN-Stanford':
+      model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
+      save_dest = Path('saved_model')
+      save_dest.mkdir(exist_ok=True)
+      saved_model = Path("saved_model/FerNet_EfficientNet.h5")
+  else:
+      model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
+      save_dest = Path('saved_model')
+      save_dest.mkdir(exist_ok=True)
+      saved_model = Path("saved_model/FerNet_EfficientNet.h5")
   if not saved_model.exists():
       download_file_from_google_drive(model_location, saved_model)
   saved_model = tf.keras.models.load_model(saved_model)
@@ -39,10 +45,10 @@ if __name__ == '__main__':
   st.title("Dog Breeds Detector")
   
   options = ['PVAN-Stanford', 'PVAN-Tsinghua']
-  selected_model = st.selectbox('Select an option (Default: PVAN-Stanford):', options)
+  selected_model = st.selectbox('Select a model to use (Default: PVAN-Stanford):', options)
   
-  saved_model = load_model()
-  class_names = load_classes()
+  saved_model = load_model(selected_model)
+  class_names = load_classes(selected_model)
   
   st.write("Choose any dog image and get the corresponding breed:")
 
