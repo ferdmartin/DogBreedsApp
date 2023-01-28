@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
   st.title("Dog Breeds Detector")
   
-  options = ['stanford', 'tsinghua']
+  options = ['PVAN-Stanford', 'PVAN-Tsinghua']
   selected_model = st.selectbox('Select an option (Default: PVAN-Stanford):', options)
   
   
