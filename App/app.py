@@ -39,6 +39,11 @@ if __name__ == '__main__':
   class_names = load_classes()
 
   st.title("Dog Breeds Detector")
+  
+  options = ['stanford', 'tsinghua']
+  selected_model = st.selectbox('Select an option (Default: PVAN-Stanford):', options)
+  
+  
   st.write("Choose any dog image and get the corresponding breed:")
 
   uploaded_image = st.file_uploader("Choose an image...")
