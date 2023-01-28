@@ -15,11 +15,12 @@ def load_model(selected_model='PVAN-Stanford'):
       save_dest = Path('saved_model')
       save_dest.mkdir(exist_ok=True)
       saved_model = Path("saved_model/FerNet_EfficientNet.h5")
-  else:
+  elif selected_model == 'PVAN-Tsinghua':
       model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
       save_dest = Path('saved_model')
       save_dest.mkdir(exist_ok=True)
       saved_model = Path("saved_model/FerNet_EfficientNet.h5")
+  
   if not saved_model.exists():
       download_file_from_google_drive(model_location, saved_model)
   saved_model = tf.keras.models.load_model(saved_model)
