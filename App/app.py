@@ -35,14 +35,14 @@ def load_and_prep_image(filename, img_shape=260):
 
 if __name__ == '__main__':
 
-  saved_model = load_model()
-  class_names = load_classes()
 
   st.title("Dog Breeds Detector")
   
   options = ['PVAN-Stanford', 'PVAN-Tsinghua']
   selected_model = st.selectbox('Select an option (Default: PVAN-Stanford):', options)
   
+  saved_model = load_model()
+  class_names = load_classes()
   
   st.write("Choose any dog image and get the corresponding breed:")
 
