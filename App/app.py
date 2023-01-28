@@ -10,19 +10,20 @@ from GDownload import download_file_from_google_drive
 
 @st.cache(allow_output_mutation=True)
 def load_model(selected_model='PVAN-Stanford'):
-  if selected_model == 'PVAN-Stanford':
-      model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
-      save_dest = Path('saved_model')
-      save_dest.mkdir(exist_ok=True)
-      saved_model = Path("saved_model/FerNet_EfficientNet.h5")
-  elif selected_model == 'PVAN-Tsinghua':
-      model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
-      save_dest = Path('saved_model')
-      save_dest.mkdir(exist_ok=True)
-      saved_model = Path("saved_model/FerNet_EfficientNet.h5")
+    if selected_model == 'PVAN-Stanford':
+        model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
+        save_dest = Path('saved_model')
+        save_dest.mkdir(exist_ok=True)
+        saved_model = Path("saved_model/FerNet_EfficientNet.h5")
   
-  if not saved_model.exists():
-      download_file_from_google_drive(model_location, saved_model)
+    elif selected_model == 'PVAN-Tsinghua':
+        model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
+        save_dest = Path('saved_model')
+        save_dest.mkdir(exist_ok=True)
+        saved_model = Path("saved_model/FerNet_EfficientNet.h5")
+  
+    if not saved_model.exists():
+        download_file_from_google_drive(model_location, saved_model)
   saved_model = tf.keras.models.load_model(saved_model)
   return saved_model
 
