@@ -25,7 +25,7 @@ def load_model():
   
   # if not saved_model.exists():
   #     download_file_from_google_drive(model_location, saved_model)
-  saved_model = "/Users/femartinez/Documents/DogBreedApp/DogBreedsApp/Fernando_Martinez_CS6000_project/saved_model/FerNetEfficientNetB2"
+  saved_model = str(Path().parent.absolute())+"/saved_models/FerNetEfficientNetB2"
   saved_model = tf.keras.models.load_model(saved_model)
   return saved_model
 
