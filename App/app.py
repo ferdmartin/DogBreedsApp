@@ -48,8 +48,8 @@ if __name__ == '__main__':
 
   st.title("Dog Breeds Detector")
   
-#   options = ['PVAN-Stanford', 'PVAN-Tsinghua']
-#   selected_model = st.selectbox('Select a model to use (Default: PVAN-Stanford):', options)
+  options = ['PVAN-Stanford', 'PVAN-Tsinghua']
+  selected_model = st.selectbox('Select a model to use (Default: PVAN-Stanford):', options)
   
   saved_model = load_model()
   class_names = load_classes()
