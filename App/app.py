@@ -5,8 +5,9 @@ import pandas as pd
 import numpy as np
 import tensorflow as tf
 from PIL import Image
+from io import BytesIO
 import json
-from GDownload import download_file_from_google_drive
+#from GDownload import download_file_from_google_drive
 
 @st.cache(allow_output_mutation=True)
 def load_model():
@@ -17,13 +18,14 @@ def load_model():
 #        saved_model = Path("saved_model/FerNet_EfficientNet.h5")
   
 #    elif selected_model == 'PVAN-Tsinghua':
-  model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
-  save_dest = Path('saved_model')
-  save_dest.mkdir(exist_ok=True)
-  saved_model = Path("saved_model/FerNet_EfficientNet.h5")
+  # model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
+  # save_dest = Path('saved_model')
+  # save_dest.mkdir(exist_ok=True)
+  # saved_model = Path("saved_model/FerNet_EfficientNet.h5")
   
-  if not saved_model.exists():
-      download_file_from_google_drive(model_location, saved_model)
+  # if not saved_model.exists():
+  #     download_file_from_google_drive(model_location, saved_model)
+  saved_model = "/Users/femartinez/Documents/DogBreedApp/DogBreedsApp/Fernando_Martinez_CS6000_project/saved_model/FerNetEfficientNetB2"
   saved_model = tf.keras.models.load_model(saved_model)
   return saved_model
 
@@ -58,6 +60,14 @@ if __name__ == '__main__':
     
   if uploaded_image:
     uploaded_image = Image.open(uploaded_image)
+    # try:
+    uploaded_image = uploaded_image.convert("RGB")
+    membuf = BytesIO()
+    uploaded_image.save(membuf, format="jpeg")
+    uploaded_image = Image.open(membuf)
+    # finally:
+
+
     image_for_the_model = load_and_prep_image(uploaded_image)
     prediction = saved_model.predict(tf.expand_dims(image_for_the_model, axis=0), verbose=0)
     
