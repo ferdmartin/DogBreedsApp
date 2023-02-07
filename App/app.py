@@ -9,7 +9,7 @@ import json
 from GDownload import download_file_from_google_drive
 
 @st.cache(allow_output_mutation=True)
-def load_model(selected_model='PVAN-Stanford'):
+def load_model():
 #    if selected_model == 'PVAN-Stanford':
 #        model_location = '1-q1R5dLfIFW7BbzKuYTjolAoqpjVClsb'
 #        save_dest = Path('saved_model')
