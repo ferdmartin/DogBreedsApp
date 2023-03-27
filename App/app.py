@@ -44,7 +44,14 @@ def load_and_prep_image(filename, img_shape=260):
   return img # don't need to resclae images for EfficientNet models in Tensorflow
 
 if __name__ == '__main__':
-
+  
+  hide_st_style = """
+            <style>
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+  st.markdown(hide_st_style, unsafe_allow_html=True)
 
   st.title("Dog Breeds Detector")
   
